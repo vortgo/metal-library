@@ -6,8 +6,6 @@ import ReviewsScreen from "../screen/ReviewsScreen";
 import AlbumScreen from "../screen/AlbumScreen";
 import BandScreen from "../screen/BandScreen";
 
-
-
 const HomeStack = createSwitchNavigator({
     Home: HomeScreen,
     Album: AlbumScreen,
@@ -15,7 +13,7 @@ const HomeStack = createSwitchNavigator({
 },
     {
         headerMode: 'none',
-        backBehavior: 'order'
+        backBehavior: 'history'
     });
 
 const SearchStack = createSwitchNavigator({
@@ -25,7 +23,7 @@ const SearchStack = createSwitchNavigator({
     },
     {
         headerMode: 'none',
-        backBehavior: 'order'
+        backBehavior: 'history'
     });
 
 const ReviewsStack = createSwitchNavigator({
@@ -35,7 +33,7 @@ const ReviewsStack = createSwitchNavigator({
     },
     {
         headerMode: 'none',
-        backBehavior: 'order'
+        backBehavior: 'history'
     });
 
 const Router = createBottomTabNavigator({

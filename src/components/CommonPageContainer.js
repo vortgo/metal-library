@@ -10,11 +10,15 @@ class CommonPageContainer extends Component {
         return (
             <Container>
                 <ImageBackground source={require('../resources/img/72859.jpg')} style={{width: '100%', height: '100%'}}>
-                    <Header/>
+                    <Header title={this.props.headerTitle}/>
                     {children}
                 </ImageBackground>
             </Container>
         )
+    }
+
+    static defaultProps = {
+        headerTitle: "Secondary",
     }
 }
 
