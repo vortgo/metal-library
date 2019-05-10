@@ -6,7 +6,7 @@ class BandScreen extends React.Component {
     render() {
         return (
             <CommonPageContainer
-                headerTitle="Band Page">
+                headerTitle="Band Page" >
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                 <Text>BandScreen!</Text>
                 <Button

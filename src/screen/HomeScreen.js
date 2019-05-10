@@ -1,24 +1,35 @@
 import React from "react";
-import {Text, View, Button} from "react-native";
+import {Text, View, Button, ScrollView} from "react-native";
 import {Root} from "native-base";
 import CommonPageContainer from "../components/CommonPageContainer"
+import {Col, Row, Grid} from 'react-native-easy-grid';
+import Title from '../components/Title'
+import AlbumList from "../components/AlbumList/AlbumList";
 
 class HomeScreen extends React.Component {
     render() {
         return (
             <CommonPageContainer
                 headerTitle="Heavy music archive">
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text>Home!</Text>
-                    <Button
-                        title="Albums"
-                        onPress={() => this.props.navigation.navigate('Album')}
-                    />
-                    <Button
-                        title="Bands"
-                        onPress={() => this.props.navigation.navigate('Band')}
-                    />
-                </View>
+                <Title text={"Upcoming albums"}/>
+                <AlbumList/>
+                <Title text={"Latest bands update"}/>
+                <ScrollView>
+                    <Button title="OK"/>
+                    <Button title="OK"/>
+                    <Button title="OK"/>
+                    <Button title="OK"/>
+                    <Button title="OK"/>
+                    <Button title="OK"/>
+                    <Button title="OK"/>
+                    <Button title="OK"/>
+                    <Button title="OK"/>
+                    <Button title="OK"/>
+                    <Button title="OK"/>
+                    <Button title="OK"/>
+                    <Button title="OK"/>
+
+                </ScrollView>
             </CommonPageContainer>
         );
     }

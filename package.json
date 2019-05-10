@@ -10,7 +10,10 @@
     "native-base": "^2.12.1",
     "react": "16.8.3",
     "react-native": "0.59.3",
+    "react-native-elements": "^1.1.0",
     "react-native-gesture-handler": "^1.1.0",
+    "react-native-svg": "^9.4.0",
+    "react-native-typography": "^1.4.0",
     "react-navigation": "^3.7.1"
   },
   "devDependencies": {
