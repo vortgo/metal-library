@@ -1,10 +1,9 @@
 import React from "react";
-import {Button, ScrollView, View, FlatList, ActivityIndicator, Text} from "react-native";
-import { Image } from 'react-native-elements';
+import {ScrollView, View, FlatList} from "react-native";
 import Item from './Item'
 
 
-export default class AlbumList extends React.Component {
+export default class UpcomingAlbumList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
