@@ -1,23 +1,25 @@
 import React from "react";
-import {ActivityIndicator, Button, ScrollView, Text, View} from "react-native";
+import {ActivityIndicator, TouchableWithoutFeedback, Text, View, Button} from "react-native";
 import {Image} from "react-native-elements";
 
 export default class Item extends React.Component {
     render() {
         return (
             <View style={styles.wrapper}>
-                <View style={styles.item}>
-                    <Image
-                        source={{uri: this.props.image}}
-                        style={styles.image}
-                        PlaceholderContent={<ActivityIndicator/>}
-                    />
-                    <View style={styles.textContainer}>
-                        <Text numberOfLines={2} style={styles.text}>
-                            {this.props.title}
-                        </Text>
+                < TouchableWithoutFeedback onPress={() => this.props.navigation.navigate('Album')}>
+                    <View style={styles.item}>
+                        <Image
+                            source={{uri: this.props.image}}
+                            style={styles.image}
+                            PlaceholderContent={<ActivityIndicator/>}
+                        />
+                        <View style={styles.textContainer}>
+                            <Text numberOfLines={2} style={styles.text}>
+                                {this.props.title}
+                            </Text>
+                        </View>
                     </View>
-                </View>
+                </TouchableWithoutFeedback>
             </View>
         )
     }
@@ -42,11 +44,10 @@ const styles = {
         alignItems: 'center'
     },
     text: {
-        padding:10,
+        padding: 10,
         textAlign: 'center',
         color: "#fff",
         width: 150,
-        fontSize: 16,
-        fontWeight: 'bold'
+        fontSize: 14,
     }
 }

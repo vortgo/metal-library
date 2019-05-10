@@ -5,6 +5,7 @@ import CommonPageContainer from "../components/CommonPageContainer"
 import {Col, Row, Grid} from 'react-native-easy-grid';
 import Title from '../components/Title'
 import UpcomingAlbumList from "../components/UpcomingAlbumList/UpcomingAlbumList";
+import LatestBandUpdateList from "../components/LatestBandUpdateList/LatestBandUpdateList";
 
 class HomeScreen extends React.Component {
     render() {
@@ -12,23 +13,9 @@ class HomeScreen extends React.Component {
             <CommonPageContainer
                 headerTitle="Heavy music archive">
                 <Title text={"Upcoming albums"}/>
-                <UpcomingAlbumList/>
+                <UpcomingAlbumList navigation={this.props.navigation}/>
                 <Title text={"Latest bands update"}/>
-                <ScrollView>
-                    <Button title="OK"/>
-                    <Button title="OK"/>
-                    <Button title="OK"/>
-                    <Button title="OK"/>
-                    <Button title="OK"/>
-                    <Button title="OK"/>
-                    <Button title="OK"/>
-                    <Button title="OK"/>
-                    <Button title="OK"/>
-                    <Button title="OK"/>
-                    <Button title="OK"/>
-                    <Button title="OK"/>
-                    <Button title="OK"/>
-                </ScrollView>
+                <LatestBandUpdateList/>
             </CommonPageContainer>
         );
     }
