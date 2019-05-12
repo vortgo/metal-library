@@ -21,7 +21,7 @@ export default class UpcomingAlbumList extends React.Component {
                         contentContainerStyle={{marginRight: 30}}
                         renderItem={({ item: rowData }) => {
                             return (
-                             <Item image={rowData.imageUrl} title={rowData.title} navigation={this.props.navigation}/>
+                             <Item image={rowData.imageUrl} bandName={rowData.bandName} albumName={rowData.albumName} navigation={this.props.navigation}/>
                             );
                         }}
                         keyExtractor={(item, index) => index.toString()}
@@ -43,18 +43,22 @@ const style = {
 const data = [
     {
         imageUrl: "https://www.metal-archives.com/images/7/7/4/9/774927.jpg?5006",
-        title: "Anathema - Saviors of the Universe "
+        albumName: "Saviors of the Universe ",
+        bandName: "Anathema",
     },
     {
         imageUrl: "https://www.metal-archives.com/images/7/7/5/3/775396.jpg?5711",
-        title: "Lowest Creature - BloodWood"
+        albumName: "BloodWood",
+        bandName: "Lowest Creature",
     },
     {
         imageUrl: "https://www.metal-archives.com/images/7/7/0/0/770072.jpg?4029",
-        title: "Pulver - Maha Kali"
+        albumName: "Maha Kali",
+        bandName: "Pulver",
     },
     {
         imageUrl: "https://www.metal-archives.com/images/7/7/4/9/774949.jpg?1647",
-        title: "Aphyxion - Fiend Of my shit life with wery long row"
+        albumName: "Fiend Of my shit life with very long row",
+        bandName: "Aphyxion",
     }
 ];

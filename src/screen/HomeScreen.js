@@ -12,10 +12,12 @@ class HomeScreen extends React.Component {
         return (
             <CommonPageContainer
                 headerTitle="Heavy music archive">
-                <Title text={"Upcoming albums"}/>
-                <UpcomingAlbumList navigation={this.props.navigation}/>
-                <Title text={"Latest bands update"}/>
-                <LatestBandUpdateList/>
+                <ScrollView>
+                    <Title text={"Upcoming albums"}/>
+                    <UpcomingAlbumList navigation={this.props.navigation}/>
+                    <Title text={"Latest bands update"}/>
+                    <LatestBandUpdateList/>
+                </ScrollView>
             </CommonPageContainer>
         );
     }

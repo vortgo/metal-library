@@ -6,7 +6,10 @@ export default class Item extends React.Component {
     render() {
         return (
             <View style={styles.wrapper}>
-                < TouchableWithoutFeedback onPress={() => this.props.navigation.navigate('Album')}>
+                < TouchableWithoutFeedback onPress={() => this.props.navigation.navigate('Album', {
+                    albumName: this.props.albumName,
+                    albumImage: this.props.image,
+                })}>
                     <View style={styles.item}>
                         <Image
                             source={{uri: this.props.image}}
@@ -15,7 +18,7 @@ export default class Item extends React.Component {
                         />
                         <View style={styles.textContainer}>
                             <Text numberOfLines={2} style={styles.text}>
-                                {this.props.title}
+                                {this.props.bandName} - {this.props.albumName}
                             </Text>
                         </View>
                     </View>

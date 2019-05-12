@@ -14,7 +14,7 @@ export default class LatestBandUpdateList extends React.Component {
 
     render() {
         return (
-            <ScrollView style={styles.scroll}>
+            <View style={styles.wrapper}>
                 <FlatList
                     keyExtractor={(item, index) => index.toString()}
                     data={this.state.data}
@@ -24,7 +24,7 @@ export default class LatestBandUpdateList extends React.Component {
                         );
                     }}
                 />
-            </ScrollView>
+            </View>
         );
     }
 
@@ -32,7 +32,7 @@ export default class LatestBandUpdateList extends React.Component {
 }
 
 const styles = {
-    scroll: {
+    wrapper: {
         paddingLeft: 20,
         paddingRight: 20
     }

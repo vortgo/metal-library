@@ -9,7 +9,7 @@ export default class HeaderTitleExample extends Component {
                     <Icon type='FontAwesome5' name='headphones-alt' style={style.icon}/>
                 </Left>
                 <Body style={{alignItems: "flex-start", flex: 5}}>
-                    <Title style={{textAlign: "left"}}>{this.props.title}</Title>
+                    <Title style={{textAlign: "left", fontSize: 18}}>{this.props.title}</Title>
                 </Body>
             </Header>
         );
