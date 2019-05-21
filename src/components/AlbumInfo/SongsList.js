@@ -24,20 +24,6 @@ export default class SongsList extends React.Component {
                     </Row>
                 </Grid>
             </View>
-
-
-
-            // <View style={styles.accordionHeader}>
-            //     <Text style={styles.text}>
-            //         {item.position} {item.name} ({item.time})
-            //     </Text>
-            //     <Text>
-            //         Lyrics {expanded
-            //         ? <Icon style={styles.icon} type='FontAwesome5' name='chevron-up'/>
-            //         : <Icon style={styles.icon} type='FontAwesome5' name='chevron-down'/>}
-            //     </Text>
-            //
-            // </View>
         );
     }
 
