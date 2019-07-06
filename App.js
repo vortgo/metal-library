@@ -1,7 +1,19 @@
 import React from 'react';
-import { Text, View } from 'react-native';
-import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
+import {createAppContainer } from 'react-navigation';
+
+import store from './src/reducers/index';
 import Router from "./src/router/Router";
+import { Provider } from 'react-redux';
 
 
-export default createAppContainer(Router);
+let Navigation = createAppContainer(Router);
+
+export default class App extends React.Component {
+    render() {
+        return (
+            <Provider store={store}>
+                <Navigation />
+            </Provider>
+        );
+    }
+}

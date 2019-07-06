@@ -63,24 +63,16 @@ const Router = createBottomTabNavigator({
                             active={props.navigation.state.index === 0}
                             onPress={() => props.navigation.navigate("Home")}
                         >
-                            <Icon name="bowtie"/>
-                            <Text>Lucy</Text>
+                            <Icon name="home"/>
+                            <Text>Home</Text>
                         </Button>
                         <Button
                             vertical
                             active={props.navigation.state.index === 1}
                             onPress={() => props.navigation.navigate("Search")}
                         >
-                            <Icon name="briefcase"/>
-                            <Text>Nine</Text>
-                        </Button>
-                        <Button
-                            vertical
-                            active={props.navigation.state.index === 2}
-                            onPress={() => props.navigation.navigate("Reviews")}
-                        >
-                            <Icon name="headset"/>
-                            <Text>Jade</Text>
+                            <Icon name="search"/>
+                            <Text>Search</Text>
                         </Button>
                     </FooterTab>
                 </Footer>

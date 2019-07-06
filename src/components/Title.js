@@ -1,17 +1,28 @@
 import React, {Component} from 'react'
-import { Text } from "react-native";
+import {Text} from "react-native";
 
 export default class Title extends Component {
     render() {
+        let parentStyles = this.props.style || {};
+        let obj = style.textWithShadow;
+
+        let tempObj = {};
+        for(let i in obj){
+            tempObj[i] = obj[i];
+        }
+        obj = tempObj;
+
+        let selfStyles = Object.assign(obj, parentStyles);
+
         return (
-            <Text style={style.textWithShadow}>{this.props.text}</Text>
+            <Text style={selfStyles}>{this.props.text}</Text>
 
         )
     }
 }
 
 const style = {
-    textWithShadow:{
+    textWithShadow: {
         fontWeight: 'bold',
         margin: 10,
         textAlign: 'center',
