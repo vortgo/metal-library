@@ -4,6 +4,7 @@ import React, {Component} from 'react'
 import {Col, Row, Grid} from 'react-native-easy-grid';
 import {connect} from "react-redux";
 import {decrement, increment} from "../../actions/CounterActions";
+import {callApiRequest} from "../../actions/ApiRequestActions";
 
 class SearchInput extends React.Component {
     render() {
@@ -19,7 +20,7 @@ class SearchInput extends React.Component {
                     </View>
                 </Col>
                 <Col size={1} style={styles.buttonWrapper}>
-                    <Button icon style={styles.searchButton} onPress={this.props.increment}>
+                    <Button icon style={styles.searchButton} onPress={this.props.callApi}>
                         <Icon name='search'/>
                     </Button>
                 </Col>
@@ -28,11 +29,7 @@ class SearchInput extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({
-    count: state.counterReducer.count
-});
-
-export default connect(mapStateToProps, {increment,decrement})(SearchInput);
+export default connect(null, {increment,decrement, callApi: callApiRequest})(SearchInput);
 
 const styles = {
     buttonWrapper: {
