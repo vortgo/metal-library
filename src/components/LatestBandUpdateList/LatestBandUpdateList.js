@@ -1,15 +1,31 @@
 import React from "react";
 import {ScrollView, View, FlatList, Button} from "react-native";
 import Item from "./Item";
+import {connect} from "react-redux";
+import {callApiLatestBandsUpdateRequest} from "../../actions/ApiRequestActions";
 
 
-export default class LatestBandUpdateList extends React.Component {
+class LatestBandUpdateList extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            data: data
+            data: [],
+            isLoading: false,
         };
+    }
+
+    componentDidMount(): void {
+        this.props.callApi()
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({isLoading: nextProps.isLoading})
+        console.log(nextProps);
+
+        if (nextProps.data) {
+            this.setState({data: nextProps.data})
+        }
     }
 
     render() {
@@ -20,15 +36,13 @@ export default class LatestBandUpdateList extends React.Component {
                     data={this.state.data}
                     renderItem={({item: rowData}) => {
                         return (
-                            <Item title={rowData.title} date={rowData.date}/>
+                            <Item title={rowData.title} date={rowData.date} navigation={this.props.navigation}/>
                         );
                     }}
                 />
             </View>
         );
     }
-
-
 }
 
 const styles = {
@@ -38,66 +52,10 @@ const styles = {
     }
 };
 
+const mapStateToProps = state => ({
+    isLoading: state.ApiLatestBandsUpdateReducer.isLoading,
+    error: state.ApiLatestBandsUpdateReducer.error,
+    data: state.ApiLatestBandsUpdateReducer.data
+});
 
-const data = [
-    {
-        title: 'Manowar',
-        date: 'March 23, 10:19'
-    },
-    {
-        title: 'Anathema long name of band test',
-        date: 'March 22, 8:09'
-    },
-    {
-        title: 'Stratovarius',
-        date: 'March 23, 10:19'
-    },
-    {
-        title: 'Manowar',
-        date: 'March 23, 10:19'
-    },
-    {
-        title: 'Draconian',
-        date: 'March 23, 10:19'
-    },
-    {
-        title: 'Ария',
-        date: 'March 23, 10:19'
-    },
-    {
-        title: 'Manowar',
-        date: 'March 23, 10:19'
-    },
-    {
-        title: 'Stratovarius',
-        date: 'March 23, 10:19'
-    },
-    {
-        title: 'Manowar',
-        date: 'March 23, 10:19'
-    },
-    {
-        title: 'Draconian',
-        date: 'March 23, 10:19'
-    },
-    {
-        title: 'Ария',
-        date: 'March 23, 10:19'
-    },
-    {
-        title: 'Stratovarius',
-        date: 'March 23, 10:19'
-    },
-    {
-        title: 'Manowar',
-        date: 'March 23, 10:19'
-    },
-    {
-        title: 'Draconian',
-        date: 'March 23, 10:19'
-    },
-    {
-        title: 'Ария',
-        date: 'March 23, 10:19'
-    },
-];
+export default connect(mapStateToProps, {callApi: callApiLatestBandsUpdateRequest})(LatestBandUpdateList);

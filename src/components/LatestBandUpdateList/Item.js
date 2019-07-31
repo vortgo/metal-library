@@ -1,19 +1,28 @@
 import React from "react";
-import {Button, ScrollView, Text, View} from "react-native";
+import {Button, TouchableWithoutFeedback, Text, View} from "react-native";
 import {Col, Row, Grid} from 'react-native-easy-grid';
+import Moment from 'moment';
 
 export default class Item extends React.Component {
-    render(){
+    render() {
+        const date = Moment(this.props.date).format('MMM D, H:mm');
+
         return (
             <View style={styles.item}>
                 <Grid>
                     <Row>
-                        <Col size={2}>
-                            <Text numberOfLines={1} style={styles.text}>{this.props.title}</Text>
-                        </Col>
-                        <Col size={1}>
-                            <Text style={styles.textDate}>{this.props.date}</Text>
-                        </Col>
+                        < TouchableWithoutFeedback onPress={() => this.props.navigation.navigate('Band', {
+                            bandName: this.props.bandName,
+                        })}>
+                            <Row>
+                                <Col size={2}>
+                                    <Text numberOfLines={1} style={styles.text}>{this.props.title}</Text>
+                                </Col>
+                                <Col size={1}>
+                                    <Text style={styles.textDate}>{date}</Text>
+                                </Col>
+                            </Row>
+                        </TouchableWithoutFeedback>
                     </Row>
                 </Grid>
             </View>
@@ -34,5 +43,6 @@ const styles = {
     textDate: {
         fontSize: 14,
         color: '#fff',
+        textAlign: 'right',
     }
 };

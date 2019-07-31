@@ -1,26 +1,59 @@
 import React from "react";
-import {Text, View, Button, ScrollView} from "react-native";
-import {Root} from "native-base";
+import {RefreshControl, ScrollView} from "react-native";
 import CommonPageContainer from "../components/CommonPageContainer"
-import {Col, Row, Grid} from 'react-native-easy-grid';
 import Title from '../components/Title'
 import UpcomingAlbumList from "../components/UpcomingAlbumList/UpcomingAlbumList";
 import LatestBandUpdateList from "../components/LatestBandUpdateList/LatestBandUpdateList";
+import {connect} from "react-redux";
+import {callApiUpcomingAlbumsRequest, callApiLatestBandsUpdateRequest} from "../actions/ApiRequestActions";
+import {Footer} from "native-base";
 
 class HomeScreen extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            refreshing: false
+        };
+    }
+
+    _onRefresh = () => {
+        this.props.callApiUpcomingAlbumsRequest();
+        this.props.callApiLatestBandsUpdateRequest();
+    };
+
+    componentWillReceiveProps(nextProps): void {
+        if(!nextProps.loadingUpcomingAlbums && !nextProps.loadingLatestBandsUpdate){
+            console.log("refreshing false")
+            this.setState({refreshing: false})
+        }
+    }
+
     render() {
         return (
             <CommonPageContainer
                 headerTitle="Heavy music archive">
-                <ScrollView>
+                <ScrollView refreshControl={
+                    <RefreshControl
+                        refreshing={this.state.refreshing}
+                        onRefresh={this._onRefresh}
+                    />
+                }
+                >
                     <Title text={"Upcoming albums"}/>
-                    <UpcomingAlbumList navigation={this.props.navigation}/>
+                    <UpcomingAlbumList
+                        navigation={this.props.navigation}/>
                     <Title text={"Latest bands update"}/>
-                    <LatestBandUpdateList/>
+                    <LatestBandUpdateList navigation={this.props.navigation}/>
                 </ScrollView>
             </CommonPageContainer>
         );
     }
 }
 
-export default HomeScreen
+const mapStateToProps = state => ({
+    loadingUpcomingAlbums: state.ApiUpcomingAlbumsReducer.isLoading,
+    loadingLatestBandsUpdate: state.ApiLatestBandsUpdateReducer.isLoading,
+});
+
+
+export default connect(mapStateToProps, {callApiUpcomingAlbumsRequest, callApiLatestBandsUpdateRequest})(HomeScreen);

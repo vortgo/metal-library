@@ -3,8 +3,7 @@ import {Button, Icon, Input, Item} from "native-base";
 import React, {Component} from 'react'
 import {Col, Row, Grid} from 'react-native-easy-grid';
 import {connect} from "react-redux";
-import {decrement, increment} from "../../actions/CounterActions";
-import {callApiRequest} from "../../actions/ApiRequestActions";
+import {callApiSearchRequest} from "../../actions/ApiRequestActions";
 
 class SearchInput extends React.Component {
     render() {
@@ -12,7 +11,7 @@ class SearchInput extends React.Component {
             <Row style={{height: 70}}>
                 <Col size={3} style={{}}>
                     <View style={styles.searchBlockWrapper}>
-                        <Item style={{backgroundColor: 'rgba(18, 33, 57,0.5)'}}>
+                        <Item style={{backgroundColor: 'rgba(18, 33, 57,0.7)'}}>
                             <Input placeholder='Search band, album, song'
                                    placeholderTextColor="grey"
                                    style={{color: "#fff",}}/>
@@ -29,7 +28,7 @@ class SearchInput extends React.Component {
     }
 }
 
-export default connect(null, {increment,decrement, callApi: callApiRequest})(SearchInput);
+export default connect(null, {callApi: callApiSearchRequest})(SearchInput);
 
 const styles = {
     buttonWrapper: {

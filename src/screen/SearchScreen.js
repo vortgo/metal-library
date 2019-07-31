@@ -6,7 +6,6 @@ import SearchInput from "../components/Search/SearchInput";
 import {Container, Header, Content, Input, Item, Accordion, Spinner, Icon, Text} from 'native-base';
 import {ActivityIndicator} from 'react-native';
 import {connect} from "react-redux";
-import {increment, decrement} from "../actions/CounterActions";
 
 class SearchScreen extends React.Component {
 
@@ -70,25 +69,29 @@ class SearchScreen extends React.Component {
     }
 
     render() {
+        const isLoading = this.state.isLoading
 
         return (
             <CommonPageContainer
                 headerTitle="Heavy music archive">
                 <Grid style={{margin: 20}}>
                     <Row>
-                        <ActivityIndicator
-                            animating={this.state.isLoading}
-                            style={[styles.loading, {height: 180}]}
-                            size="large"
+                        {isLoading && (
+                            <ActivityIndicator
+                                style={[styles.loading, {height: 180}]}
+                                size="large"
+                            />
+                        )}
 
-                        />
-                        <Accordion style={styles.accordion}
-                                   dataArray={this.state.searchResult}
-                                   animation={true}
-                                   renderHeader={this._renderHeader}
-                                   renderContent={this._renderContent}
-                                   expanded={0}
-                        />
+                        {!isLoading && (
+                            <Accordion style={styles.accordion}
+                                       dataArray={this.state.searchResult}
+                                       animation={true}
+                                       renderHeader={this._renderHeader}
+                                       renderContent={this._renderContent}
+                                       expanded={0}
+                            />
+                        )}
                     </Row>
                     <SearchInput/>
                 </Grid>
@@ -99,10 +102,9 @@ class SearchScreen extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    count: state.counterReducer.count,
-    isLoading: state.ApiRequestReducer.isLoading,
-    error: state.ApiRequestReducer.error,
-    data: state.ApiRequestReducer.data
+    isLoading: state.ApiSearchReducer.isLoading,
+    error: state.ApiSearchReducer.error,
+    data: state.ApiSearchReducer.data
 });
 
 export default connect(mapStateToProps)(SearchScreen);
@@ -113,7 +115,7 @@ const styles = {
         marginBottom: 7,
     },
     icon: {
-        fontSize: 16,
+        fontSize: 12,
         color: "#fff"
     },
     item: {
