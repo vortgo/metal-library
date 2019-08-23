@@ -10,6 +10,7 @@ import {callApiAlbumRequest} from "../../actions/ApiRequestActions";
 class AlbumPanel extends React.Component {
     constructor(props){
         super(props)
+
         this.state = {
             album: {},
             isLoading: false,
@@ -17,7 +18,7 @@ class AlbumPanel extends React.Component {
     }
 
     componentDidMount(): void {
-        this.props.callApi(1);
+        this.props.callApi(this.props.albumId);
     }
 
     componentWillReceiveProps(nextProps): void {

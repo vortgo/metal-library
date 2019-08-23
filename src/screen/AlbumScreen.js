@@ -15,7 +15,7 @@ class AlbumScreen extends React.Component {
     }
 
     _onRefresh = () => {
-        let albumId = this.props.navigation.getParam('albumName', 1);
+        let albumId = this.props.navigation.getParam('albumId', 1);
         this.props.callApiAlbumRequest(albumId);
         this.props.callApiAlbumSongsRequest(albumId);
         this.setState({refreshing: false})
@@ -24,6 +24,7 @@ class AlbumScreen extends React.Component {
     render() {
         let {navigation} = this.props;
         let albumName = navigation.getParam('albumName', 'albumsNameDefault');
+        let albumId = navigation.getParam('albumId', 1);
 
         return (
             <CommonPageContainer
@@ -36,8 +37,8 @@ class AlbumScreen extends React.Component {
                     />
                 }
                 >
-                    <AlbumPanel/>
-                    <SongsList/>
+                    <AlbumPanel albumId={albumId}/>
+                    <SongsList albumId={albumId}/>
                 </ScrollView>
             </CommonPageContainer>
         );

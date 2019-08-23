@@ -1,5 +1,5 @@
 import React from 'react';
-import {createBottomTabNavigator, createSwitchNavigator} from 'react-navigation';
+import {createBottomTabNavigator, createSwitchNavigator, createStackNavigator} from 'react-navigation';
 import HomeScreen from '../screen/HomeScreen';
 import SearchScreen from "../screen/SearchScreen";
 import ReviewsScreen from "../screen/ReviewsScreen";
@@ -17,17 +17,22 @@ import {
 } from "native-base";
 import StyleContainer from "../components/StyleContainer"
 
-const HomeStack = createSwitchNavigator({
+const HomeStack = createStackNavigator({
         Home: HomeScreen,
         Album: AlbumScreen,
         Band: BandScreen,
     },
     {
         headerMode: 'none',
-        backBehavior: 'history'
+        backBehavior: 'history',
+        transitionConfig : () => ({
+            transitionSpec: {
+                duration: 0,
+            },
+        }),
     });
 
-const SearchStack = createSwitchNavigator({
+const SearchStack = createStackNavigator({
         Search: SearchScreen,
         Album: AlbumScreen,
         Band: BandScreen,
@@ -54,6 +59,7 @@ const Router = createBottomTabNavigator({
 }, {
     backBehavior: 'none',
     tabBarComponent: props => {
+        console.log(props.navigation);
         return (
             <StyleContainer>
                 <Footer>

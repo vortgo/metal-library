@@ -20,8 +20,6 @@ class UpcomingAlbumList extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         this.setState({isLoading: nextProps.isLoading})
-        console.log(nextProps);
-
 
         if (nextProps.data) {
             this.setState({data: nextProps.data})
@@ -38,7 +36,7 @@ class UpcomingAlbumList extends React.Component {
                         contentContainerStyle={{marginRight: 30}}
                         renderItem={({ item: rowData }) => {
                             return (
-                             <Item image={rowData.image} bandName={rowData.band_name} albumName={rowData.name} navigation={this.props.navigation}/>
+                             <Item id={rowData.id} image={rowData.image} bandName={rowData.band_name} albumName={rowData.name} navigation={this.props.navigation}/>
                             );
                         }}
                         keyExtractor={(item, index) => index.toString()}

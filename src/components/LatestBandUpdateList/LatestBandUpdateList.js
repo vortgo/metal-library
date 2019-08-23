@@ -36,7 +36,7 @@ class LatestBandUpdateList extends React.Component {
                     data={this.state.data}
                     renderItem={({item: rowData}) => {
                         return (
-                            <Item title={rowData.title} date={rowData.date} navigation={this.props.navigation}/>
+                            <Item id={rowData.id} title={rowData.title} date={rowData.date} navigation={this.props.navigation}/>
                         );
                     }}
                 />

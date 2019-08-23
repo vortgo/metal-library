@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-import {ScrollView, Text, View, Image, ImageBackground, FlatList, ActivityIndicator} from "react-native";
+import {ScrollView, Text, ImageBackground, FlatList, ActivityIndicator} from "react-native";
 import {Col, Row, Grid} from 'react-native-easy-grid';
-import {Container, Tab, Tabs} from 'native-base';
+import {Tab, Tabs} from 'native-base';
 import Title from "../Title";
 import BandRelease from "./BandRelease";
 import {connect} from "react-redux";
@@ -20,8 +20,10 @@ class BandInfo extends Component {
     }
 
     componentDidMount(): void {
-        this.props.callApi(1);
-        this.props.callApiBandAlbums(1)
+        let bandId = this.props.navigation.getParam('bandId', 1);
+
+        this.props.callApi(bandId);
+        this.props.callApiBandAlbums(bandId)
     }
 
     componentWillReceiveProps(nextProps): void {
@@ -80,12 +82,12 @@ class BandInfo extends Component {
                             <ImageBackground
                                 blurRadius={5}
                                 style={styles.backgroundImage}
-                                source={{uri: 'https://www.metal-archives.com/images/3/5/4/0/3540309034_photo.jpg'}}
+                                source={{uri: data.image_band || data.image_logo}}
                             >
                                 <ImageBackground
                                     resizeMode={'contain'}
                                     style={styles.backgroundImage}
-                                    source={{uri: 'https://www.metal-archives.com/images/3/5/4/0/3540309034_photo.jpg'}}
+                                    source={{uri: data.image_band || data.image_logo}}
                                 >
                                     <Title text={data.name}
                                            style={{textAlign: 'left', position: 'absolute', bottom: 0, margin: 20}}/>
@@ -155,7 +157,7 @@ class BandInfo extends Component {
                                             data={albums.sort(this.sortReleases('-year'))}
                                             renderItem={({item: rowData}) => {
                                                 return (
-                                                    <BandRelease album={rowData}/>
+                                                    <BandRelease album={rowData} navigation={this.props.navigation}/>
                                                 );
                                             }}
                                         />

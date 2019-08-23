@@ -12,7 +12,8 @@ export default class Item extends React.Component {
                 <Grid>
                     <Row>
                         < TouchableWithoutFeedback onPress={() => this.props.navigation.navigate('Band', {
-                            bandName: this.props.bandName,
+                            bandName: this.props.title,
+                            bandId: this.props.id
                         })}>
                             <Row>
                                 <Col size={2}>

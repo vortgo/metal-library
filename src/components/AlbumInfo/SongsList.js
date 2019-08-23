@@ -16,7 +16,7 @@ class SongsList extends React.Component {
     }
 
     componentDidMount(): void {
-        this.props.callApi(1);
+        this.props.callApi(this.props.albumId);
     }
 
     componentWillReceiveProps(nextProps): void {

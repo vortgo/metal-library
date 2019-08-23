@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = 'http://demo9434884.mockable.io/api/v1/';
+const url = 'http://159.69.26.148:1323/api/v1/';
 
 export default class Api {
 

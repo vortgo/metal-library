@@ -8,11 +8,11 @@ class ReviewsScreen extends React.Component {
                 <Text>ReviewsScreen!</Text>
                 <Button
                     title="Albums"
-                    onPress={() => this.props.navigation.navigate('Album')}
+                    onPress={() => this.props.navigation.push('Album')}
                 />
                 <Button
                     title="Bands"
-                    onPress={() => this.props.navigation.navigate('Band')}
+                    onPress={() => this.props.navigation.push('Band')}
                 />
             </View>
         );

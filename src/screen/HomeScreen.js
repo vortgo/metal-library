@@ -40,8 +40,8 @@ class HomeScreen extends React.Component {
                 }
                 >
                     <Title text={"Upcoming albums"}/>
-                    <UpcomingAlbumList
-                        navigation={this.props.navigation}/>
+                    <UpcomingAlbumList {...this.props}
+                       />
                     <Title text={"Latest bands update"}/>
                     <LatestBandUpdateList navigation={this.props.navigation}/>
                 </ScrollView>

@@ -4,7 +4,7 @@ import {Container, Header, Left, Body, Right, Title, Icon} from 'native-base';
 export default class HeaderTitleExample extends Component {
     render() {
         return (
-            <Header>
+            <Header style={{elevation: 100}} >
                 <Left style={{ flex: 1}}>
                     <Icon type='FontAwesome5' name='headphones-alt' style={style.icon}/>
                 </Left>
