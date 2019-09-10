@@ -28,13 +28,16 @@ class SongsList extends React.Component {
     }
 
     _renderHeader(item, expanded) {
+        const time = item.time ? "(" + item.time + ")" : '';
+
         return (
             <View style={styles.item}>
                 <Grid>
                     <Row>
                         <Col size={2}>
                             <Text numberOfLines={1}
-                                  style={styles.text}> {item.position} {item.name} ({item.time})</Text>
+                                  style={styles.text}> {item.position} {item.name} {time}
+                            </Text>
                         </Col>
                         <Col size={1}>
                             <Text style={styles.textLyrics}>

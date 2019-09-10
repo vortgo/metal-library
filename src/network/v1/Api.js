@@ -1,11 +1,11 @@
 import axios from "axios";
 
-const url = 'http://159.69.26.148:1323/api/v1/';
+const url = 'http://138.201.92.74:1323/api/v1/';
 
 export default class Api {
 
     static search (searchString){
-        return axios.get(url + 'search' + searchString);
+        return axios.get(url + 'search?search=' + searchString);
     }
 
     static upcomingAlbums (){

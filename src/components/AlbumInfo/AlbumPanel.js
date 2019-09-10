@@ -1,5 +1,5 @@
 import React from "react";
-import {ActivityIndicator, Text, View} from "react-native";
+import {ActivityIndicator, Text, TouchableWithoutFeedback, View} from "react-native";
 import {Col, Row, Grid} from 'react-native-easy-grid';
 import {Image} from "react-native-elements";
 import Title from "../Title";
@@ -8,7 +8,7 @@ import {connect} from 'react-redux';
 import {callApiAlbumRequest} from "../../actions/ApiRequestActions";
 
 class AlbumPanel extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props)
 
         this.state = {
@@ -24,7 +24,7 @@ class AlbumPanel extends React.Component {
     componentWillReceiveProps(nextProps): void {
         this.setState({isLoading: nextProps.isLoading});
 
-        if(nextProps.data){
+        if (nextProps.data) {
             this.setState({album: nextProps.data});
         }
     }
@@ -44,7 +44,14 @@ class AlbumPanel extends React.Component {
 
                 {!isLoading && (
                     <View>
-                        <Title text={this.state.album.band_name}/>
+                        < TouchableWithoutFeedback onPress={() => this.props.navigation.push('Band', {
+                            bandName:  this.state.album.band_name,
+                            bandId: this.state.album.band_id
+                        })}>
+                            <View>
+                                <Title text={"Band: " + this.state.album.band_name}/>
+                            </View>
+                        </TouchableWithoutFeedback>
                         <View style={styles.wrapper}>
                             <Grid>
                                 <Row>

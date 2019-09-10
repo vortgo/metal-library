@@ -1,11 +1,13 @@
 import React from "react";
-import {ScrollView, View} from "react-native";
+import {ScrollView, TouchableWithoutFeedback, View} from "react-native";
 import {Col, Row, Grid} from 'react-native-easy-grid';
 import CommonPageContainer from "../components/CommonPageContainer";
 import SearchInput from "../components/Search/SearchInput";
 import {Container, Header, Content, Input, Item, Accordion, Spinner, Icon, Text} from 'native-base';
 import {ActivityIndicator} from 'react-native';
 import {connect} from "react-redux";
+
+let navigation;
 
 class SearchScreen extends React.Component {
 
@@ -20,8 +22,6 @@ class SearchScreen extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         this.setState({isLoading: nextProps.isLoading})
-        console.log(nextProps);
-
 
         if (nextProps.data) {
             this.setState({searchResult: nextProps.data})
@@ -29,6 +29,9 @@ class SearchScreen extends React.Component {
     }
 
     _renderHeader(item, expanded) {
+        if (item.data == null) {
+            item.data = [];
+        }
         return (
             <View style={styles.item}>
                 <Grid>
@@ -55,22 +58,42 @@ class SearchScreen extends React.Component {
         return (
             <View style={styles.content}>
                 {item.data.map((row, key) => {
+
+                    let routeParam = {};
+                    let routeName = '';
+
+                    if (item.name === 'Bands') {
+                        routeName = 'Band';
+                        routeParam = {
+                            bandName: row.name,
+                            bandId: row.id
+                        };
+                    } else if (item.name === 'Albums') {
+                        routeName = 'Album';
+                        routeParam = {
+                            albumName: row.name,
+                            albumId: row.id
+                        };
+                    }
+
                     return (
-                        <View style={styles.searchResultRow} key={key}>
-                            <Text style={styles.text} numberOfLines={1}>
-                                {row.name} {item.data[key].name}
-                            </Text>
-                        </View>
+                        < TouchableWithoutFeedback
+                            onPress={() => navigation.push(routeName, routeParam)}>
+                            <View style={styles.searchResultRow} key={key}>
+                                <Text style={styles.text} numberOfLines={1}>
+                                    {item.name == 'Albums' ? row.band_name + ' - ' + row.name : row.name}
+                                </Text>
+                            </View>
+                        </TouchableWithoutFeedback>
                     )
                 })}
             </View>
-
         );
     }
 
     render() {
+        navigation = this.props.navigation;
         const isLoading = this.state.isLoading
-
         return (
             <CommonPageContainer
                 headerTitle="Heavy music archive">

@@ -4,12 +4,11 @@ import {Image} from "react-native-elements";
 
 export default class Item extends React.Component {
     render() {
-        console.log(this.props.navigation);
         return (
             <View style={styles.wrapper}>
                 < TouchableWithoutFeedback onPress={() => this.props.navigation.push('Album', {
-                    albumId: this.props.id,
-                    albumName: this.props.albumName
+                    albumName: this.props.albumName,
+                    albumId: this.props.id
                 })}>
                     <View style={styles.item}>
                         <Image

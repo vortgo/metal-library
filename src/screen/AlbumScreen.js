@@ -25,7 +25,7 @@ class AlbumScreen extends React.Component {
         let {navigation} = this.props;
         let albumName = navigation.getParam('albumName', 'albumsNameDefault');
         let albumId = navigation.getParam('albumId', 1);
-
+        console.log(this.props.navigation.state)
         return (
             <CommonPageContainer
                 headerTitle={"Album: " + albumName}
@@ -37,7 +37,7 @@ class AlbumScreen extends React.Component {
                     />
                 }
                 >
-                    <AlbumPanel albumId={albumId}/>
+                    <AlbumPanel albumId={albumId} navigation={this.props.navigation}/>
                     <SongsList albumId={albumId}/>
                 </ScrollView>
             </CommonPageContainer>

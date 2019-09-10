@@ -16,6 +16,7 @@ import {
     StyleProvider,
 } from "native-base";
 import StyleContainer from "../components/StyleContainer"
+import { StackActions, NavigationActions } from 'react-navigation';
 
 const HomeStack = createStackNavigator({
         Home: HomeScreen,
@@ -25,7 +26,7 @@ const HomeStack = createStackNavigator({
     {
         headerMode: 'none',
         backBehavior: 'history',
-        transitionConfig : () => ({
+        transitionConfig: () => ({
             transitionSpec: {
                 duration: 0,
             },
@@ -39,7 +40,6 @@ const SearchStack = createStackNavigator({
     },
     {
         headerMode: 'none',
-        backBehavior: 'history'
     });
 
 const ReviewsStack = createSwitchNavigator({
@@ -48,8 +48,7 @@ const ReviewsStack = createSwitchNavigator({
         Band: BandScreen,
     },
     {
-        headerMode: 'none',
-        backBehavior: 'history'
+        headerMode: 'none'
     });
 
 const Router = createBottomTabNavigator({
@@ -59,15 +58,20 @@ const Router = createBottomTabNavigator({
 }, {
     backBehavior: 'none',
     tabBarComponent: props => {
-        console.log(props.navigation);
         return (
             <StyleContainer>
-                <Footer>
+                <Footer style={{
+                    borderTopColor: '#414047',
+                    borderTopWidth: 1
+                }}>
                     <FooterTab>
                         <Button
                             vertical
                             active={props.navigation.state.index === 0}
-                            onPress={() => props.navigation.navigate("Home")}
+                            onPress={() => {
+                                props.navigation.dispatch(StackActions.popToTop());
+                                props.navigation.navigate("Home")
+                            }}
                         >
                             <Icon name="home"/>
                             <Text>Home</Text>
@@ -75,7 +79,10 @@ const Router = createBottomTabNavigator({
                         <Button
                             vertical
                             active={props.navigation.state.index === 1}
-                            onPress={() => props.navigation.navigate("Search")}
+                            onPress={() => {
+                                props.navigation.dispatch(StackActions.popToTop());
+                                props.navigation.navigate("Search");
+                            }}
                         >
                             <Icon name="search"/>
                             <Text>Search</Text>

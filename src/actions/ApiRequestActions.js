@@ -23,10 +23,10 @@ const apiSearchComplete = (data) => ({
     data: data
 });
 
-export const callApiSearchRequest = () => {
+export const callApiSearchRequest = (searchString) => {
     return dispatch => {
         dispatch(apiSearchStart());
-        Api.search('')
+        Api.search(searchString)
             .then(response => {
                 dispatch(apiSearchComplete(response.data))
             })

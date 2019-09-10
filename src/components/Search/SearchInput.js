@@ -1,4 +1,4 @@
-import {View} from "react-native";
+import {View, Keyboard} from "react-native";
 import {Button, Icon, Input, Item} from "native-base";
 import React, {Component} from 'react'
 import {Col, Row, Grid} from 'react-native-easy-grid';
@@ -6,6 +6,11 @@ import {connect} from "react-redux";
 import {callApiSearchRequest} from "../../actions/ApiRequestActions";
 
 class SearchInput extends React.Component {
+    constructor(props) {
+        super(props);
+        this.searchString = '';
+    }
+
     render() {
         return (
             <Row style={{height: 70}}>
@@ -14,12 +19,14 @@ class SearchInput extends React.Component {
                         <Item style={{backgroundColor: 'rgba(18, 33, 57,0.7)'}}>
                             <Input placeholder='Search band, album, song'
                                    placeholderTextColor="grey"
-                                   style={{color: "#fff",}}/>
+                                   style={{color: "#fff",}}
+                                   onChangeText={(text) => this.searchString = text}
+                            />
                         </Item>
                     </View>
                 </Col>
                 <Col size={1} style={styles.buttonWrapper}>
-                    <Button icon style={styles.searchButton} onPress={this.props.callApi}>
+                    <Button icon style={styles.searchButton} onPress={()=>{Keyboard.dismiss();this.props.callApi(this.searchString)}}>
                         <Icon name='search'/>
                     </Button>
                 </Col>

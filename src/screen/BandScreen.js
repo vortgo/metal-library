@@ -6,7 +6,7 @@ import LatestBandUpdateList from "../components/LatestBandUpdateList/LatestBandU
 
 class BandScreen extends React.Component {
     render() {
-        console.log("BandScreenTitle: "+ this.props.navigation.getParam("bandName",'Band'));
+        console.log(this.props.navigation.state)
         return (
             <CommonPageContainer
                 headerTitle={this.props.navigation.getParam("bandName",'Band')}>
