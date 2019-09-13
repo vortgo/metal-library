@@ -96,7 +96,7 @@ class SearchScreen extends React.Component {
         const isLoading = this.state.isLoading
         return (
             <CommonPageContainer
-                headerTitle="Heavy music archive">
+                headerTitle="Metal Library">
                 <Grid style={{margin: 20}}>
                     <Row>
                         {isLoading && (

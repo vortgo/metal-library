@@ -31,7 +31,7 @@ class HomeScreen extends React.Component {
     render() {
         return (
             <CommonPageContainer
-                headerTitle="Heavy music archive">
+                headerTitle="Metal Library">
                 <ScrollView refreshControl={
                     <RefreshControl
                         refreshing={this.state.refreshing}

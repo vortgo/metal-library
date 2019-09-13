@@ -8,25 +8,32 @@ import {callApiSearchRequest} from "../../actions/ApiRequestActions";
 class SearchInput extends React.Component {
     constructor(props) {
         super(props);
-        this.searchString = '';
+        this.state = { text: '' };
     }
 
     render() {
         return (
             <Row style={{height: 70}}>
-                <Col size={3} style={{}}>
+                <Col size={5} style={{}}>
                     <View style={styles.searchBlockWrapper}>
                         <Item style={{backgroundColor: 'rgba(18, 33, 57,0.7)'}}>
                             <Input placeholder='Search band, album, song'
                                    placeholderTextColor="grey"
                                    style={{color: "#fff",}}
-                                   onChangeText={(text) => this.searchString = text}
+                                   onChangeText={(text) => this.setState({text})}
+                                   value={this.state.text}
                             />
                         </Item>
                     </View>
                 </Col>
                 <Col size={1} style={styles.buttonWrapper}>
-                    <Button icon style={styles.searchButton} onPress={()=>{Keyboard.dismiss();this.props.callApi(this.searchString)}}>
+                    <Button icon style={styles.searchButton} onPress={()=>{
+                        Keyboard.dismiss();
+                        this.props.callApi(this.state.text)
+                        this.setState({
+                            text: ''
+                        })
+                    }}>
                         <Icon name='search'/>
                     </Button>
                 </Col>
