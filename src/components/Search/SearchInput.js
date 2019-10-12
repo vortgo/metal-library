@@ -14,7 +14,7 @@ class SearchInput extends React.Component {
     render() {
         return (
             <Row style={{height: 70}}>
-                <Col size={5} style={{}}>
+                <Col size={4} style={{}}>
                     <View style={styles.searchBlockWrapper}>
                         <Item style={{backgroundColor: 'rgba(18, 33, 57,0.7)'}}>
                             <Input placeholder='Search band, album, song'
