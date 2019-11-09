@@ -31,4 +31,8 @@ export default class Api {
     static bandAlbums(bandId){
         return axios.get(url + 'band/' + bandId + '/albums');
     }
+
+    static song(songId){
+        return axios.get(url + 'song/' + songId);
+    }
 }

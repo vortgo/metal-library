@@ -17,11 +17,13 @@ import {
 } from "native-base";
 import StyleContainer from "../components/StyleContainer"
 import { StackActions, NavigationActions } from 'react-navigation';
+import SongScreen from "../screen/SongScreen";
 
 const HomeStack = createStackNavigator({
         Home: HomeScreen,
         Album: AlbumScreen,
         Band: BandScreen,
+        Song: SongScreen,
     },
     {
         headerMode: 'none',
@@ -37,6 +39,7 @@ const SearchStack = createStackNavigator({
         Search: SearchScreen,
         Album: AlbumScreen,
         Band: BandScreen,
+        Song: SongScreen,
     },
     {
         headerMode: 'none',
@@ -46,6 +49,7 @@ const ReviewsStack = createSwitchNavigator({
         Reviews: ReviewsScreen,
         Album: AlbumScreen,
         Band: BandScreen,
+        Song: SongScreen,
     },
     {
         headerMode: 'none'

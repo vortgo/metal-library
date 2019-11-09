@@ -1,12 +1,11 @@
 import React from "react";
-import {RefreshControl, ScrollView} from "react-native";
+import {RefreshControl, ScrollView, Button} from "react-native";
 import CommonPageContainer from "../components/CommonPageContainer"
 import Title from '../components/Title'
 import UpcomingAlbumList from "../components/UpcomingAlbumList/UpcomingAlbumList";
 import LatestBandUpdateList from "../components/LatestBandUpdateList/LatestBandUpdateList";
 import {connect} from "react-redux";
 import {callApiUpcomingAlbumsRequest, callApiLatestBandsUpdateRequest} from "../actions/ApiRequestActions";
-import {Footer} from "native-base";
 
 class HomeScreen extends React.Component {
     constructor(props) {
@@ -22,7 +21,7 @@ class HomeScreen extends React.Component {
     };
 
     componentWillReceiveProps(nextProps): void {
-        if(!nextProps.loadingUpcomingAlbums && !nextProps.loadingLatestBandsUpdate){
+        if (!nextProps.loadingUpcomingAlbums && !nextProps.loadingLatestBandsUpdate) {
             console.log("refreshing false")
             this.setState({refreshing: false})
         }
@@ -41,7 +40,7 @@ class HomeScreen extends React.Component {
                 >
                     <Title text={"Upcoming albums"}/>
                     <UpcomingAlbumList {...this.props}
-                       />
+                    />
                     <Title text={"Latest bands update"}/>
                     <LatestBandUpdateList navigation={this.props.navigation}/>
                 </ScrollView>

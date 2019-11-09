@@ -28,3 +28,7 @@ export const API_BAND_COMPLETE = 'api_band_complete';
 export const API_BAND_ALBUMS_START = 'api_band_albums_start';
 export const API_BAND_ALBUMS_ERROR = 'api_band_albums_error';
 export const API_BAND_ALBUMS_COMPLETE = 'api_band_albums_complete';
+
+export const API_SONG_START = 'api_song_start';
+export const API_SONG_ERROR = 'api_song_error';
+export const API_SONG_COMPLETE = 'api_song_complete';

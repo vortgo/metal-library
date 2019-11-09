@@ -105,8 +105,8 @@ android {
         applicationId "com.hma"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "1.2"
     }
 
     signingConfigs {
@@ -150,6 +150,7 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-webview')
     implementation project(':react-native-youtube')
     implementation project(':react-native-svg')
     implementation project(':react-native-gesture-handler')

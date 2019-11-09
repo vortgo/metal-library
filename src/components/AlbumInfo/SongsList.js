@@ -1,10 +1,12 @@
 import React from "react";
-import {ActivityIndicator, Text, View, ScrollView} from "react-native";
+import {ActivityIndicator, Text, View, ScrollView, FlatList} from "react-native";
 import Title from "../Title";
 import {Accordion, Icon} from "native-base";
 import {Col, Row, Grid} from 'react-native-easy-grid';
 import {connect} from "react-redux";
 import {callApiAlbumSongsRequest} from "../../actions/ApiRequestActions";
+import Item from "../LatestBandUpdateList/Item";
+import SongListItem from "./SongListItem";
 
 class SongsList extends React.Component {
     constructor(props) {
@@ -81,12 +83,15 @@ class SongsList extends React.Component {
                 {!isLoading && (
                     <View>
                         <Title text="Songs" fontSize={14}/>
-                        <Accordion style={styles.accordion}
-                                   dataArray={this.state.data}
-                                   animation={true}
-                                   expanded={true}
-                                   renderHeader={this._renderHeader}
-                                   renderContent={this._renderContent}
+                        <FlatList
+                            keyExtractor={(item, index) => index.toString()}
+                            data={this.state.data}
+                            renderItem={({item: item}) => {
+                                const time = item.time ? "(" + item.time + ")" : '';
+                                return (
+                                    <SongListItem id={item.id} position={item.position} name={item.name} time={time}/>
+                                );
+                            }}
                         />
                     </View>
                 )}
@@ -120,7 +125,7 @@ const styles = {
         marginRight: 20,
     },
     content: {
-        backgroundColor: "#122139",
+        backgroundColor: 'rgba(18, 33, 57,0.8)',
         fontSize: 16,
         padding: 15,
         marginLeft: 20,

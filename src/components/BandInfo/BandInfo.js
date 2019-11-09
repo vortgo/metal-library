@@ -132,7 +132,7 @@ class BandInfo extends Component {
                                                     <Text style={styles.text}>{this.implodeArray(data.genres)}</Text>
                                                 </Col>
                                             </Row>
-                                            <Row>
+                                            <Row style={styles.row}>
                                                 <Col>
                                                     <Text style={styles.text}>Lyrical themes:</Text>
                                                 </Col>
@@ -193,7 +193,7 @@ const styles = {
         height: '100%',
     },
     tab: {
-        backgroundColor: 'rgb(18, 33, 57)',
+        backgroundColor: 'rgba(18, 33, 57,0.8)',
         padding: 20,
     },
     releasesTab: {

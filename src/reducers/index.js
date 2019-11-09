@@ -9,6 +9,7 @@ import ApiBandReducer from './api/album/ApiBandReducer'
 import ApiBandAlbumsReducer from './api/album/ApiBandAlbumsReducer'
 
 import thunk from 'redux-thunk';
+import ApiSongReducer from "./api/album/ApiSongReducer";
 
 const AppReducers = combineReducers({
     ApiLatestBandsUpdateReducer,
@@ -17,6 +18,7 @@ const AppReducers = combineReducers({
     ApiAlbumReducer,
     ApiAlbumSongsReducer,
     ApiBandReducer,
+    ApiSongReducer,
     ApiBandAlbumsReducer
 });
 

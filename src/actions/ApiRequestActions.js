@@ -5,6 +5,7 @@ import {API_ALBUM_START, API_ALBUM_ERROR, API_ALBUM_COMPLETE} from "../actions/A
 import {API_ALBUM_SONGS_START, API_ALBUM_SONGS_ERROR, API_ALBUM_SONGS_COMPLETE} from "../actions/ActionTypes";
 import {API_BAND_START, API_BAND_ERROR, API_BAND_COMPLETE} from "../actions/ActionTypes";
 import {API_BAND_ALBUMS_START, API_BAND_ALBUMS_ERROR, API_BAND_ALBUMS_COMPLETE} from "../actions/ActionTypes";
+import {API_SONG_START, API_SONG_ERROR, API_SONG_COMPLETE} from "../actions/ActionTypes";
 
 
 import Api from "../network/v1/Api"
@@ -195,6 +196,33 @@ export const callApiBandAlbumsRequest = (bandId) => {
             })
             .catch(error => {
                 dispatch(apiBandAlbumsError(error))
+            });
+    }
+};
+
+const apiSongStart = () => ({
+    type: API_SONG_START
+});
+
+const apiSongError = (error) => ({
+    type: API_SONG_ERROR,
+    error: error
+});
+
+const apiSongComplete = (data) => ({
+    type: API_SONG_COMPLETE,
+    data: data
+});
+
+export const callApiSongRequest = (songId) => {
+    return dispatch => {
+        dispatch(apiSongStart());
+        Api.song(songId)
+            .then(response => {
+                dispatch(apiSongComplete(response.data))
+            })
+            .catch(error => {
+                dispatch(apiSongError(error))
             });
     }
 };
