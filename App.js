@@ -36,7 +36,7 @@ export default class App extends React.Component {
     handleBackButton = () => {
         if (!this.timer.isTimerRunning) {
             this.timer.isTimerRunning = true;
-            const backInterval = 1000;
+            const backInterval = 3000;
             clearTimeout(this.timer.ref);
             this.timer.ref = setTimeout(() => this.timer.isTimerRunning = false, backInterval);
             ToastAndroid.show("Press back again to exit", ToastAndroid.SHORT);
