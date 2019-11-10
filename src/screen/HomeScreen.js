@@ -6,6 +6,7 @@ import UpcomingAlbumList from "../components/UpcomingAlbumList/UpcomingAlbumList
 import LatestBandUpdateList from "../components/LatestBandUpdateList/LatestBandUpdateList";
 import {connect} from "react-redux";
 import {callApiUpcomingAlbumsRequest, callApiLatestBandsUpdateRequest} from "../actions/ApiRequestActions";
+import SplashScreen from "react-native-splash-screen";
 
 class HomeScreen extends React.Component {
     constructor(props) {
@@ -13,6 +14,12 @@ class HomeScreen extends React.Component {
         this.state = {
             refreshing: false
         };
+    }
+
+    componentDidMount() {
+        // do stuff while splash screen is shown
+        // After having done stuff (such as async tasks) hide the splash screen
+        SplashScreen.hide();
     }
 
     _onRefresh = () => {

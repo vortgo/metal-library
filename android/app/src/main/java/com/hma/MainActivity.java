@@ -1,6 +1,8 @@
 package com.hma;
 
+import android.os.Bundle;
 import com.facebook.react.ReactActivity;
+import com.hma.SplashScreen;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
 import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;
@@ -14,6 +16,12 @@ public class MainActivity extends ReactActivity {
     @Override
     protected String getMainComponentName() {
         return "hma";
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        SplashScreen.show(this);  // here
+        super.onCreate(savedInstanceState);
     }
 
     @Override

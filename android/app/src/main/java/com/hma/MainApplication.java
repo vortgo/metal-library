@@ -3,6 +3,7 @@ package com.hma;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.hma.SplashScreenReactPackage;
 import com.reactnativecommunity.webview.RNCWebViewPackage;
 import com.horcrux.svg.SvgPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
@@ -27,6 +28,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new SplashScreenReactPackage(),
             new RNCWebViewPackage(),
             new SvgPackage(),
             new RNGestureHandlerPackage(),
