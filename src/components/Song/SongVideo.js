@@ -14,7 +14,7 @@ class SongVideo extends Component {
                     </View>
                 ) : (
                     <WebView
-                        source={{uri: 'http://rock-songs.online:1323/song-iframe?video_id=' + videoKey}}
+                        source={{uri: 'http://metallibrary.ga:1323/song-iframe?video_id=' + videoKey}}
                     />
                 )}
             </View>
