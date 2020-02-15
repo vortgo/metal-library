@@ -95,7 +95,7 @@ const styles = {
         marginLeft: 20,
         marginRight: 20,
         height: 100,
-        backgroundColor: "#151d2a",
+            backgroundColor: "#151d2a",
     },
     imageWrapper: {
         width: 100,
