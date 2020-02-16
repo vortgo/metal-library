@@ -3,7 +3,7 @@ import styles from './Drawer.style';
 import {StackActions} from 'react-navigation';
 import {ImageBackground, ScrollView, Text, View} from 'react-native';
 import Header, {Button, Container, Icon} from "native-base";
-import env from '../../../env'
+import env from '../../../../env'
 
 class Drawer extends Component {
     render() {

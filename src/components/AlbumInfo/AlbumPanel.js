@@ -9,7 +9,7 @@ import {callApiAlbumRequest} from "../../actions/ApiRequestActions";
 
 class AlbumPanel extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
 
         this.state = {
             album: {},
