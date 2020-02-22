@@ -6,6 +6,9 @@ import SearchInput from "../components/Search/SearchInput";
 import {Container, Header, Content, Input, Item, Accordion, Spinner, Icon, Text} from 'native-base';
 import {ActivityIndicator} from 'react-native';
 import {connect} from "react-redux";
+import {WebView} from "react-native-webview";
+import BandSearchItem from "../components/Search/BandSearchItem";
+import AlbumSearchItem from "../components/Search/AlbumSearchItem";
 
 let navigation;
 
@@ -55,13 +58,14 @@ class SearchScreen extends React.Component {
     }
 
     _renderContent(item) {
+        console.log(item);
         return (
             <View style={styles.content}>
+
                 {item.data.map((row, key) => {
-
                     let routeParam = {};
-                    let routeName = '';
 
+                    let routeName = '';
                     if (item.name === 'Bands') {
                         routeName = 'Band';
                         routeParam = {
@@ -75,16 +79,24 @@ class SearchScreen extends React.Component {
                             albumId: row.id
                         };
                     }
-
                     return (
-                        < TouchableWithoutFeedback
-                            onPress={() => navigation.push(routeName, routeParam)}>
-                            <View style={styles.searchResultRow} key={key}>
-                                <Text style={styles.text} numberOfLines={1}>
-                                    {item.name == 'Albums' ? row.band_name + ' - ' + row.name : row.name}
-                                </Text>
-                            </View>
-                        </TouchableWithoutFeedback>
+                        <View>
+                            {item.name == "Bands" ? (
+                                <BandSearchItem
+                                    routeName={routeName}
+                                    routeParam={routeParam}
+                                    mapKey={key}
+                                    item={row}
+                                />
+                            ) : (
+                                <AlbumSearchItem
+                                    routeName={routeName}
+                                    routeParam={routeParam}
+                                    mapKey={key}
+                                    item={row}
+                                />
+                            )}
+                        </View>
                     )
                 })}
             </View>
@@ -133,6 +145,19 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps)(SearchScreen);
 
 const styles = {
+    countryText:{
+        fontSize: 12,
+        color: "#fff"
+    },
+    genresText:{
+        color: '#807e7e',
+        fontSize: 10,
+    },
+    iconLink:{
+        fontSize: 16,
+        color: "#fff",
+        textAlign: "center",
+    },
     accordion: {
         borderWidth: 0,
         marginBottom: 7,
@@ -157,7 +182,6 @@ const styles = {
     content: {
         backgroundColor: "#122139",
         fontSize: 16,
-        padding: 5,
         paddingBottom: 0,
         color: "#fff",
         fontStyle: "italic",
@@ -165,7 +189,7 @@ const styles = {
     searchResultRow: {
         borderBottomColor: '#414047',
         borderBottomWidth: 1,
-        padding: 10
+        padding: 5
     },
     loading: {
         position: 'absolute',
