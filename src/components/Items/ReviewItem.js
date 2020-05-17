@@ -25,10 +25,9 @@ export default class ReviewItem extends Component {
                                             style={styles.text}>{this.props.review.title} - {this.props.review.rating}%</Text>
                                     </Text>
                                     <Text style={styles.additionalInfoText}>
-                                        {this.props.review.author}
-                                        {this.props.review.album_name != null &&
+                                        {this.props.review.author} {this.props.review.album_name != null &&
                                         <Text style={styles.additionalInfoText}>
-                                            about {this.props.review.album_name}
+                                             about {this.props.review.album_name}
                                         </Text>
                                         }
                                     </Text>
