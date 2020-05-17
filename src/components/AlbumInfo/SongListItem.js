@@ -48,8 +48,6 @@ const styles = {
         padding: 8,
         paddingRight: 0,
         marginTop: 7,
-        marginLeft: 20,
-        marginRight: 20,
     },
     textLyrics: {
         fontSize: 16,

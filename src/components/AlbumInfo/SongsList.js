@@ -82,7 +82,6 @@ class SongsList extends React.Component {
                 )}
                 {!isLoading && (
                     <View>
-                        <Title text="Songs" fontSize={14}/>
                         <FlatList
                             keyExtractor={(item, index) => index.toString()}
                             data={this.state.data}

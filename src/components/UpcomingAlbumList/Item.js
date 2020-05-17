@@ -17,8 +17,11 @@ export default class Item extends React.Component {
                             PlaceholderContent={<ActivityIndicator/>}
                         />
                         <View style={styles.textContainer}>
-                            <Text numberOfLines={2} style={styles.text}>
-                                {this.props.bandName} - {this.props.albumName}
+                            <Text numberOfLines={1} style={styles.text}>
+                                {this.props.albumName}
+                            </Text>
+                            <Text numberOfLines={1} style={styles.text}>
+                                {this.props.bandName}
                             </Text>
                         </View>
                     </View>
@@ -34,23 +37,23 @@ const styles = {
     },
     item: {
         backgroundColor: "#151d2a",
-        width: 150,
-        height: 200
+        width: 100,
+        height: 140
     },
     image: {
-        width: 150,
-        height: 150
+        width: 100,
+        height: 100
     },
     textContainer: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        padding: 5
     },
     text: {
-        padding: 10,
         textAlign: 'center',
         color: "#fff",
-        width: 150,
-        fontSize: 14,
+        width: 100,
+        fontSize: 12,
     }
-}
+};

@@ -5,7 +5,8 @@ import {Tab, Tabs} from 'native-base';
 import Title from "../Title";
 import BandRelease from "./BandRelease";
 import {connect} from "react-redux";
-import {callApiBandRequest, callApiBandAlbumsRequest} from "../../actions/ApiRequestActions";
+import {callApiBandRequest, callApiBandAlbumsRequest, callApiBandReviewsRequest} from "../../actions/ApiRequestActions";
+import ReviewItem from "../Items/ReviewItem";
 
 
 class BandInfo extends Component {
@@ -15,15 +16,16 @@ class BandInfo extends Component {
         this.state = {
             data: {},
             albums: [],
+            reviews: [],
             isLoading: true,
         }
     }
 
     componentDidMount(): void {
         let bandId = this.props.navigation.getParam('bandId', 1);
-
         this.props.callApi(bandId);
-        this.props.callApiBandAlbums(bandId)
+        this.props.callApiBandAlbums(bandId);
+        this.props.callApiBandReviews(bandId);
     }
 
     componentWillReceiveProps(nextProps): void {
@@ -35,6 +37,10 @@ class BandInfo extends Component {
 
         if (nextProps.albums) {
             this.setState({albums: nextProps.albums});
+        }
+
+        if (nextProps.reviews) {
+            this.setState({reviews: nextProps.reviews});
         }
     }
 
@@ -65,6 +71,7 @@ class BandInfo extends Component {
         const data = this.state.data;
         const isLoading = this.state.isLoading;
         const albums = this.state.albums;
+        const reviews = this.state.reviews;
 
         return (
             <Grid>
@@ -94,9 +101,9 @@ class BandInfo extends Component {
                                 </ImageBackground>
                             </ImageBackground>
                         </Row>
-                        <Row size={3}>
+                        <Row size={4}>
                             <Tabs>
-                                <Tab heading="Band Info" style={styles.tab}>
+                                <Tab activeTextStyle={styles.tabTextStyle} textStyle={styles.tabTextStyle} heading="Band Info" style={styles.tab}>
                                     <ScrollView showsHorizontalScrollIndicator={false}
                                                 showsVerticalScrollIndicator={false}>
                                         <Grid>
@@ -144,13 +151,13 @@ class BandInfo extends Component {
                                         </Grid>
                                     </ScrollView>
                                 </Tab>
-                                <Tab heading="Description" style={styles.tab}>
+                                <Tab activeTextStyle={styles.tabTextStyle}  textStyle={styles.tabTextStyle} heading="Description" style={styles.tab}>
                                     <ScrollView showsHorizontalScrollIndicator={false}
                                                 showsVerticalScrollIndicator={false}>
                                         <Text style={styles.text}>{data.description}</Text>
                                     </ScrollView>
                                 </Tab>
-                                <Tab heading="Releases" style={styles.releasesTab}>
+                                <Tab activeTextStyle={styles.tabTextStyle}  textStyle={styles.tabTextStyle} heading="Releases" style={styles.tab}>
                                     {albums && (
                                         <FlatList
                                             keyExtractor={(item, index) => index.toString()}
@@ -162,7 +169,20 @@ class BandInfo extends Component {
                                             }}
                                         />
                                     )}
-                                </Tab>
+                                </Tab >
+                                {(reviews != undefined && reviews.length > 0)  && (
+                                    <Tab activeTextStyle={styles.tabTextStyle}  textStyle={styles.tabTextStyle} heading="Reviews" style={styles.tab}>
+                                        <FlatList
+                                            keyExtractor={(item, index) => index.toString()}
+                                            data={reviews}
+                                            renderItem={({item: rowData}) => {
+                                                return (
+                                                    <ReviewItem review={rowData} navigation={this.props.navigation}/>
+                                                );
+                                            }}
+                                        />
+                                    </Tab>
+                                )}
                             </Tabs>
                         </Row>
                     </Col>
@@ -180,11 +200,16 @@ const mapStateToProps = state => ({
     isLoadingAlbums: state.ApiBandAlbumsReducer.isLoading,
     errorAlbums: state.ApiBandAlbumsReducer.error,
     albums: state.ApiBandAlbumsReducer.data,
+
+    isLoadingReviews: state.ApiBandReviewsReducer.isLoading,
+    errorReviews: state.ApiBandReviewsReducer.error,
+    reviews: state.ApiBandReviewsReducer.data,
 });
 
 export default connect(mapStateToProps, {
     callApi: callApiBandRequest,
-    callApiBandAlbums: callApiBandAlbumsRequest
+    callApiBandAlbums: callApiBandAlbumsRequest,
+    callApiBandReviews: callApiBandReviewsRequest
 })(BandInfo)
 
 const styles = {
@@ -195,6 +220,12 @@ const styles = {
     tab: {
         backgroundColor: 'rgba(18, 33, 57,0.8)',
         padding: 20,
+
+    },
+    tabTextStyle: {
+      fontSize: 12,
+        fontWeight: "normal",
+        color: '#fff'
     },
     releasesTab: {
         backgroundColor: 'rgba(18, 33, 57,0)',

@@ -7,6 +7,9 @@ import ApiAlbumReducer from './api/album/ApiAlbumReducer'
 import ApiAlbumSongsReducer from './api/album/ApiAlbumSongsReducer'
 import ApiBandReducer from './api/album/ApiBandReducer'
 import ApiBandAlbumsReducer from './api/album/ApiBandAlbumsReducer'
+import ApiBandReviewsReducer from './api/album/ApiBandReviewsReducer'
+import ApiAlbumReviewsReducer from './api/album/ApiAlbumReviewsReducer'
+import ApiReviewReducer from './api/album/ApiReviewReducer'
 
 import thunk from 'redux-thunk';
 import ApiSongReducer from "./api/album/ApiSongReducer";
@@ -19,7 +22,10 @@ const AppReducers = combineReducers({
     ApiAlbumSongsReducer,
     ApiBandReducer,
     ApiSongReducer,
-    ApiBandAlbumsReducer
+    ApiBandAlbumsReducer,
+    ApiBandReviewsReducer,
+    ApiAlbumReviewsReducer,
+    ApiReviewReducer,
 });
 
 const rootReducer = (state, action) => {

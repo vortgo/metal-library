@@ -6,6 +6,9 @@ import {API_ALBUM_SONGS_START, API_ALBUM_SONGS_ERROR, API_ALBUM_SONGS_COMPLETE} 
 import {API_BAND_START, API_BAND_ERROR, API_BAND_COMPLETE} from "../actions/ActionTypes";
 import {API_BAND_ALBUMS_START, API_BAND_ALBUMS_ERROR, API_BAND_ALBUMS_COMPLETE} from "../actions/ActionTypes";
 import {API_SONG_START, API_SONG_ERROR, API_SONG_COMPLETE} from "../actions/ActionTypes";
+import {API_BAND_REVIEWS_START, API_BAND_REVIEWS_ERROR, API_BAND_REVIEWS_COMPLETE} from "../actions/ActionTypes";
+import {API_ALBUM_REVIEWS_START, API_ALBUM_REVIEWS_ERROR, API_ALBUM_REVIEWS_COMPLETE} from "../actions/ActionTypes";
+import {API_REVIEW_START, API_REVIEW_ERROR, API_REVIEW_COMPLETE} from "../actions/ActionTypes";
 
 
 import Api from "../network/v1/Api"
@@ -113,6 +116,7 @@ export const callApiAlbumRequest = (albumId) => {
                 dispatch(apiAlbumComplete(response.data))
             })
             .catch(error => {
+                console.log(albumId, error);
                 dispatch(apiAlbumError(error))
             });
     }
@@ -164,7 +168,6 @@ export const callApiBandRequest = (bandId) => {
         dispatch(apiBandStart());
         Api.band(bandId)
             .then(response => {
-                console.log(response.data);
                 dispatch(apiBandComplete(response.data))
             })
             .catch(error => {
@@ -223,6 +226,88 @@ export const callApiSongRequest = (songId) => {
             })
             .catch(error => {
                 dispatch(apiSongError(error))
+            });
+    }
+};
+
+const apiBandReviewsStart = () => ({
+    type: API_BAND_REVIEWS_START
+});
+
+const apiBandReviewsError = (error) => ({
+    type: API_BAND_REVIEWS_ERROR,
+    error: error
+});
+
+const apiBandReviewsComplete = (data) => ({
+    type: API_BAND_REVIEWS_COMPLETE,
+    data: data
+});
+
+export const callApiBandReviewsRequest = (bandId) => {
+    return dispatch => {
+        dispatch(apiBandReviewsStart());
+        Api.bandReviews(bandId)
+            .then(response => {
+                dispatch(apiBandReviewsComplete(response.data))
+            })
+            .catch(error => {
+                dispatch(apiBandReviewsError(error))
+            });
+    }
+};
+
+const apiAlbumReviewsStart = () => ({
+    type: API_ALBUM_REVIEWS_START
+});
+
+const apiAlbumReviewsError = (error) => ({
+    type: API_ALBUM_REVIEWS_ERROR,
+    error: error
+});
+
+const apiAlbumReviewsComplete = (data) => ({
+    type: API_ALBUM_REVIEWS_COMPLETE,
+    data: data
+});
+
+export const callApiAlbumReviewsRequest = (albumId) => {
+    return dispatch => {
+        dispatch(apiAlbumReviewsStart());
+        Api.albumReviews(albumId)
+            .then(response => {
+                dispatch(apiAlbumReviewsComplete(response.data))
+            })
+            .catch(error => {
+                dispatch(apiAlbumReviewsError(error))
+            });
+    }
+};
+
+
+const apiReviewStart = () => ({
+    type: API_REVIEW_START
+});
+
+const apiReviewError = (error) => ({
+    type: API_REVIEW_ERROR,
+    error: error
+});
+
+const apiReviewComplete = (data) => ({
+    type: API_REVIEW_COMPLETE,
+    data: data
+});
+
+export const callApiReviewRequest = (reviewId) => {
+    return dispatch => {
+        dispatch(apiReviewStart());
+        Api.review(reviewId)
+            .then(response => {
+                dispatch(apiReviewComplete(response.data))
+            })
+            .catch(error => {
+                dispatch(apiReviewError(error))
             });
     }
 };

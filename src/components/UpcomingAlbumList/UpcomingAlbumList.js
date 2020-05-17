@@ -28,7 +28,7 @@ class UpcomingAlbumList extends React.Component {
 
     render() {
         return (
-            <View style={{height: 200}}>
+            <View style={{height: 145}}>
                 <ScrollView horizontal={true} style={style.scroll}>
                     <FlatList
                         horizontal

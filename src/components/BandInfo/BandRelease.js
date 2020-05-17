@@ -61,7 +61,7 @@ const styles = {
     item: {
 
         marginBottom: 10,
-        backgroundColor: 'rgba(18, 33, 57,0.8)'
+        backgroundColor: "#151d2a",
     },
     cover: {
         width: 60,

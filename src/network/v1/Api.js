@@ -35,4 +35,16 @@ export default class Api {
     static song(songId){
         return axios.get(url + 'song/' + songId);
     }
+
+    static bandReviews(bandId){
+        return axios.get(url + 'band/' + bandId + '/reviews');
+    }
+
+    static albumReviews(albumId){
+        return axios.get(url + 'album/' + albumId + '/reviews');
+    }
+
+    static review(reviewId){
+        return axios.get(url + 'review/' + reviewId);
+    }
 }

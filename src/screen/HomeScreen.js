@@ -45,10 +45,10 @@ class HomeScreen extends React.Component {
                     />
                 }
                 >
-                    <Title text={"Upcoming albums"}/>
+                    <Title text={"Top rated albums"}/>
                     <UpcomingAlbumList {...this.props}
                     />
-                    <Title text={"Latest bands update"}/>
+                    <Title text={"Top rated bands"}/>
                     <LatestBandUpdateList navigation={this.props.navigation}/>
                 </ScrollView>
             </CommonPageContainer>

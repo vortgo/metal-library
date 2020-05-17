@@ -21,7 +21,6 @@ class LatestBandUpdateList extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         this.setState({isLoading: nextProps.isLoading})
-        console.log(nextProps);
 
         if (nextProps.data) {
             this.setState({data: nextProps.data})

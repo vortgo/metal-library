@@ -13,7 +13,7 @@ class CommonPageContainer extends Component {
                     <ImageBackground source={require('../resources/img/20.jpg')}
                                      style={{width: '100%', height: '100%'}}>
                         {this.props.showHeader &&
-                        <Header title={this.props.headerTitle}/>
+                        <Header title='Metal Library'/>
                         }
                         {children}
                     </ImageBackground>

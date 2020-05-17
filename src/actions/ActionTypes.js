@@ -32,3 +32,15 @@ export const API_BAND_ALBUMS_COMPLETE = 'api_band_albums_complete';
 export const API_SONG_START = 'api_song_start';
 export const API_SONG_ERROR = 'api_song_error';
 export const API_SONG_COMPLETE = 'api_song_complete';
+
+export const API_BAND_REVIEWS_START = 'api_band_reviews_start';
+export const API_BAND_REVIEWS_ERROR = 'api_band_reviews_error';
+export const API_BAND_REVIEWS_COMPLETE = 'api_band_reviews_complete';
+
+export const API_ALBUM_REVIEWS_START = 'api_album_reviews_start';
+export const API_ALBUM_REVIEWS_ERROR = 'api_album_reviews_error';
+export const API_ALBUM_REVIEWS_COMPLETE = 'api_album_reviews_complete';
+
+export const API_REVIEW_START = 'api_review_start';
+export const API_REVIEW_ERROR = 'api_review_error';
+export const API_REVIEW_COMPLETE = 'api_review_complete';
