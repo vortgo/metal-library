@@ -5,7 +5,7 @@ export default {
         flex: 1
     },
     itemIcon:{
-        fontSize: 18,
+        fontSize: 14,
         color: 'white',
     },
     navItemStyle: {

@@ -30,6 +30,18 @@ class Drawer extends Component {
                                 }}>
                                     <Icon style={styles.itemIcon} name="search"/> Search
                                 </Text>
+                                <Text style={styles.navItemStyle} onPress={() => {
+                                    this.props.navigation.dispatch(StackActions.popToTop());
+                                    this.props.navigation.navigate("AboutTheApp")
+                                }}>
+                                    <Icon style={styles.itemIcon} type="FontAwesome" name="exclamation"/>   About the app
+                                </Text>
+                                <Text style={styles.navItemStyle} onPress={() => {
+                                    this.props.navigation.dispatch(StackActions.popToTop());
+                                    this.props.navigation.navigate("RequestFeature")
+                                }}>
+                                    <Icon style={styles.itemIcon} type="FontAwesome" name="edit"/> Request a feature
+                                </Text>
                             </View>
                         </View>
 

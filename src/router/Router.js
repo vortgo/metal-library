@@ -12,6 +12,8 @@ import SongScreen from "../screen/SongScreen";
 import ReviewScreen from "../screen/ReviewScreen";
 import DrawerComponent from "./navigations/Drawer/Drawer";
 import Tabs from "./navigations/Tabs/Tab";
+import AboutScreen from "../screen/AboutScreen";
+import RequestFeatureScreen from "../screen/RequestFeatureScreen";
 
 
 const HomeStack = createStackNavigator({
@@ -45,6 +47,8 @@ const SearchStack = createStackNavigator({
 const Drawer = createDrawerNavigator({
     Home: HomeStack,
     Search: SearchStack,
+    AboutTheApp: AboutScreen,
+    RequestFeature: RequestFeatureScreen,
 }, {
     drawerPosition: 'right',
     drawerWidth: 230,

@@ -1,12 +1,11 @@
 import React from "react";
-import {ScrollView, TouchableWithoutFeedback, View} from "react-native";
+import {View} from "react-native";
 import {Col, Row, Grid} from 'react-native-easy-grid';
 import CommonPageContainer from "../components/CommonPageContainer";
 import SearchInput from "../components/Search/SearchInput";
-import {Container, Header, Content, Input, Item, Accordion, Spinner, Icon, Text} from 'native-base';
+import {Accordion, Icon, Text} from 'native-base';
 import {ActivityIndicator} from 'react-native';
 import {connect} from "react-redux";
-import {WebView} from "react-native-webview";
 import BandSearchItem from "../components/Search/BandSearchItem";
 import AlbumSearchItem from "../components/Search/AlbumSearchItem";
 
@@ -145,15 +144,15 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps)(SearchScreen);
 
 const styles = {
-    countryText:{
+    countryText: {
         fontSize: 12,
         color: "#fff"
     },
-    genresText:{
+    genresText: {
         color: '#807e7e',
         fontSize: 10,
     },
-    iconLink:{
+    iconLink: {
         fontSize: 16,
         color: "#fff",
         textAlign: "center",
