@@ -46,8 +46,8 @@ class LatestBandUpdateList extends React.Component {
 
 const styles = {
     wrapper: {
-        paddingLeft: 20,
-        paddingRight: 20
+        paddingLeft: 7,
+        paddingRight: 7
     }
 };
 

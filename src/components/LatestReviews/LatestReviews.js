@@ -2,10 +2,9 @@ import React from "react";
 import {ScrollView, View, FlatList} from "react-native";
 import Item from './Item'
 import {connect} from "react-redux";
-import {callApiUpcomingAlbumsRequest} from "../../actions/ApiRequestActions";
+import {callApiLatestReviewsRequest, callApiUpcomingAlbumsRequest} from "../../actions/ApiRequestActions";
 
-
-class UpcomingAlbumList extends React.Component {
+class LatestReviews extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -28,15 +27,13 @@ class UpcomingAlbumList extends React.Component {
 
     render() {
         return (
-            <View style={{height: 145}}>
-                <ScrollView horizontal={true} style={style.scroll}>
+            <View>
+                <ScrollView style={style.scroll}>
                     <FlatList
-                        horizontal
                         data={this.state.data}
-                        contentContainerStyle={{marginRight: 30}}
-                        renderItem={({ item: rowData }) => {
+                        renderItem={({item: rowData}) => {
                             return (
-                             <Item id={rowData.id} image={rowData.image} bandName={rowData.band_name} albumName={rowData.name} navigation={this.props.navigation}/>
+                                <Item item={rowData} navigation={this.props.navigation}/>
                             );
                         }}
                         keyExtractor={(item, index) => index.toString()}
@@ -56,9 +53,9 @@ const style = {
 }
 
 const mapStateToProps = state => ({
-    isLoading: state.ApiUpcomingAlbumsReducer.isLoading,
-    error: state.ApiUpcomingAlbumsReducer.error,
-    data: state.ApiUpcomingAlbumsReducer.data
+    isLoading: state.ApiLatestReviewsReducer.isLoading,
+    error: state.ApiLatestReviewsReducer.error,
+    data: state.ApiLatestReviewsReducer.data
 });
 
-export default connect(mapStateToProps, {callApi: callApiUpcomingAlbumsRequest})(UpcomingAlbumList);
+export default connect(mapStateToProps,{callApi: callApiLatestReviewsRequest})(LatestReviews);

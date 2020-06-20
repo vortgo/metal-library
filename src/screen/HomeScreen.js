@@ -5,8 +5,13 @@ import Title from '../components/Title'
 import UpcomingAlbumList from "../components/UpcomingAlbumList/UpcomingAlbumList";
 import LatestBandUpdateList from "../components/LatestBandUpdateList/LatestBandUpdateList";
 import {connect} from "react-redux";
-import {callApiUpcomingAlbumsRequest, callApiLatestBandsUpdateRequest} from "../actions/ApiRequestActions";
+import {
+    callApiUpcomingAlbumsRequest,
+    callApiLatestBandsUpdateRequest,
+    callApiLatestReviewsRequest
+} from "../actions/ApiRequestActions";
 import SplashScreen from "react-native-splash-screen";
+import LatestReviews from "../components/LatestReviews/LatestReviews";
 
 class HomeScreen extends React.Component {
     constructor(props) {
@@ -17,18 +22,17 @@ class HomeScreen extends React.Component {
     }
 
     componentDidMount() {
-        // do stuff while splash screen is shown
-        // After having done stuff (such as async tasks) hide the splash screen
         SplashScreen.hide();
     }
 
     _onRefresh = () => {
         this.props.callApiUpcomingAlbumsRequest();
         this.props.callApiLatestBandsUpdateRequest();
+        this.props.callApiLatestReviewsRequest();
     };
 
     componentWillReceiveProps(nextProps): void {
-        if (!nextProps.loadingUpcomingAlbums && !nextProps.loadingLatestBandsUpdate) {
+        if (!nextProps.loadingUpcomingAlbums && !nextProps.loadingLatestBandsUpdate && !nextProps.loadingLatestReviews) {
             console.log("refreshing false")
             this.setState({refreshing: false})
         }
@@ -45,10 +49,11 @@ class HomeScreen extends React.Component {
                     />
                 }
                 >
-                    <Title text={"Upcoming albums"}/>
-                    <UpcomingAlbumList {...this.props}
-                    />
-                    <Title text={"Latest bands update"}/>
+                    <Title text={"Upcoming Albums"}/>
+                    <UpcomingAlbumList {...this.props}/>
+                    <Title text={"Latest Reviews"}/>
+                    <LatestReviews {...this.props}/>
+                    <Title text={"Latest Bands Update"}/>
                     <LatestBandUpdateList navigation={this.props.navigation}/>
                 </ScrollView>
             </CommonPageContainer>
@@ -59,7 +64,12 @@ class HomeScreen extends React.Component {
 const mapStateToProps = state => ({
     loadingUpcomingAlbums: state.ApiUpcomingAlbumsReducer.isLoading,
     loadingLatestBandsUpdate: state.ApiLatestBandsUpdateReducer.isLoading,
+    loadingLatestReviews: state.ApiLatestReviewsReducer.isLoading,
 });
 
 
-export default connect(mapStateToProps, {callApiUpcomingAlbumsRequest, callApiLatestBandsUpdateRequest})(HomeScreen);
+export default connect(mapStateToProps, {
+    callApiUpcomingAlbumsRequest,
+    callApiLatestBandsUpdateRequest,
+    callApiLatestReviewsRequest
+})(HomeScreen);

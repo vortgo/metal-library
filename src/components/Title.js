@@ -15,7 +15,7 @@ export default class Title extends Component {
         let selfStyles = Object.assign(obj, parentStyles);
 
         return (
-            <Text style={selfStyles}>{this.props.text}</Text>
+            <Text numberOfLines={this.props.numberOfLines} style={selfStyles}>{this.props.text}</Text>
 
         )
     }

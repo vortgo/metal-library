@@ -9,6 +9,7 @@ import {API_SONG_START, API_SONG_ERROR, API_SONG_COMPLETE} from "../actions/Acti
 import {API_BAND_REVIEWS_START, API_BAND_REVIEWS_ERROR, API_BAND_REVIEWS_COMPLETE} from "../actions/ActionTypes";
 import {API_ALBUM_REVIEWS_START, API_ALBUM_REVIEWS_ERROR, API_ALBUM_REVIEWS_COMPLETE} from "../actions/ActionTypes";
 import {API_REVIEW_START, API_REVIEW_ERROR, API_REVIEW_COMPLETE} from "../actions/ActionTypes";
+import {API_LATEST_REVIEWS_START, API_LATEST_REVIEWS_ERROR, API_LATEST_REVIEWS_COMPLETE} from "../actions/ActionTypes";
 
 
 import Api from "../network/v1/Api"
@@ -308,6 +309,34 @@ export const callApiReviewRequest = (reviewId) => {
             })
             .catch(error => {
                 dispatch(apiReviewError(error))
+            });
+    }
+};
+
+
+const apiLatestReviewsStart = () => ({
+    type: API_LATEST_REVIEWS_START
+});
+
+const apiLatestReviewsError = (error) => ({
+    type: API_LATEST_REVIEWS_ERROR,
+    error: error
+});
+
+const apiLatestReviewsComplete = (data) => ({
+    type: API_LATEST_REVIEWS_COMPLETE,
+    data: data
+});
+
+export const callApiLatestReviewsRequest = () => {
+    return dispatch => {
+        dispatch(apiLatestReviewsStart());
+        Api.latestReviews()
+            .then(response => {
+                dispatch(apiLatestReviewsComplete(response.data))
+            })
+            .catch(error => {
+                dispatch(apiLatestReviewsError(error))
             });
     }
 };

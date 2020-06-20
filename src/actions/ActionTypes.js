@@ -44,3 +44,7 @@ export const API_ALBUM_REVIEWS_COMPLETE = 'api_album_reviews_complete';
 export const API_REVIEW_START = 'api_review_start';
 export const API_REVIEW_ERROR = 'api_review_error';
 export const API_REVIEW_COMPLETE = 'api_review_complete';
+
+export const API_LATEST_REVIEWS_START = 'api_latest_reviews_start';
+export const API_LATEST_REVIEWS_ERROR = 'api_latest_reviews_error';
+export const API_LATEST_REVIEWS_COMPLETE = 'api_latest_reviews_complete';
